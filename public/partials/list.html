@@ -1,0 +1,29 @@
+<div class="page-header">
+	<h4>投票列表</h4>
+</div>
+<div class="row">
+	<div class="col-xs-5">
+		<a href="#/new" class="btn btn-default" role="button">
+			<span class="glyphicon glyphicon-plus"></span>
+			新增
+		</a>
+	</div>
+	<div class="col-xs-7">
+		<input type="text" class="form-control" ng-model="query" placeholder="需要查找的投票名称">
+	</div>
+</div>
+<p>&nbsp;</p>
+<div class="row" ng-switch on="polls.length">
+	<ul ng-switch-when="0">
+		<li>
+			在数据库中没有投票记录，希望
+			<a href="#/new">新增一个</a>
+			吗？
+		</li>
+	</ul>
+	<ul ng-switch-default>
+		<li ng-repeat="poll in polls | filter: query">
+			<p><a href="#/poll/{{poll._id}}">{{poll.question}}</a></p>
+		</li>
+	</ul>
+</div>
